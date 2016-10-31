@@ -1,0 +1,72 @@
+// Programmer Reference //
+
+CNOSim is a behavoir accurate CPU simulation engine - designed to simulate the
+FULMINATEv2 CPU core. The way it is designed allows other CPU's to be 
+tested, however.
+
+The --COMPUTERSYSTEM-- class represents the backbone of any simulated
+computer. Devices and a CPU must be created seperately and connected to it 
+using special functions (called?)
+
+// Device Class //
+
+The Device class represents a generic memory-mapped device. Any device acts
+as a slave to the linked ComputerSystem class. A device cannot be copied or
+copy constructed - what happens to the parent ComputerSystem? ComputerSystem 
+interacts with the device by calling the following functions:
+
+Byte ReadByte(Address addr)				- reads a byte from address specified
+Word ReadWord(Address addr)				- ""      word          ""
+void WriteByte(Address addr, Byte data) - write a byte to the address specified
+void WriteWord(Address addr, Word data) - ""	  word          ""
+
+There are similar "non-hardware" functions which can change the internal state
+of a device for debugging reasons but are not treated as a hardware-bus 
+interaction. This allows certain registers to be modified while avoiding any
+"action on read/write" (e.g. reading a byte from a buffer fetches the next 
+byte), or for read-only memory to be altered:
+
+PeekByte, PeekWord, PokeByte, PokeWord (same format as above).
+
+The AddressRange() should return the greatest memory address for the device if
+counting starts at 0. For example, if a device has registers from 0x0 to 0xf, 
+the address range would be 15.
+
+Any device must inherit the Device class.
+
+There are some caveats with the devices I have implemented:
+a) All addressing is word aligned. That means reading/writing to a word ignores
+   the lowest address bit. If bit0 is high for "non-hardware" functions, a
+   AddressAlignmentException exception will be thrown.
+b) Attempting to access an out-of-range address results in a ADDRESSOUTOFRANGE
+   exception
+c) Memory is addressed big-endian (may make this changable at one point)
+
+// ComputerSystem Class //
+The ComputerSystem class represents the "backbone" of a microprocessor based
+system. It acts as the interface between the CPU and the devices, and is 
+responsible for:
+a) Memory mapping devices
+b) Mapping device interrupts to IRQ's
+
+ComputerSystem does NOT own any device or CPU objects - thus deleting 
+ComputerSystem will not delete any connected devices or processors.
+
+Devices are connected and disconnected using the (At/De)tachDevice function:
+	void AttachDevice(Device * device, Address base)
+where device is a pointer to the device and base is the lowest memory address
+than the device occupies. To disconnect as device, use the DetachDevice()
+function:
+	void DetachDevice(Device * device)
+
+Note that all devices must be WORD-ALIGNED - that is if a device occupies the
+lowest byte of word it must also occupy the upper byte.
+
+Bus accesses and non-action read/writes are the same as for devices but 
+prefixed with 'Bus'
+
+// CPU Class //
+The CPU class represents the systems Central Processing Unit. The CPU interacts
+with the system via the ComputerSystem class.
+
+CPU's cannot be copied or copy-constructed (what happens to the parent?).
