@@ -156,7 +156,7 @@ void RAMDevice::HexDump(std::ostream* str, Address start, Address end)
 	// If we start mid block, indent with spaces
 	if (start % 16 != 0) {
 		int j = start % 16;
-		*str << std::setw(6) << (start & !0xf) << ": ";
+		*str << std::setw(6) << (start & ~0xf) << ": ";
 		for (; j > 0; j--) {
 			*str << "   ";
 		}
