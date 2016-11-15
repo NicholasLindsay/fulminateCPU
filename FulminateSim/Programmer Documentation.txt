@@ -1,6 +1,6 @@
 // Programmer Reference //
 
-CNOSim is a behavoir accurate CPU simulation engine - designed to simulate the
+CNOSim is a behavouir accurate CPU simulation engine - designed to simulate the
 FULMINATEv2 CPU core. The way it is designed allows other CPU's to be 
 tested, however.
 

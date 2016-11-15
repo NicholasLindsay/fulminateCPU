@@ -6,6 +6,7 @@
 #include "computersystem.h"
 #include "fulminate_cpu.h"
 #include <iostream>
+#include <sstream>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -15,17 +16,22 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	sys.AttachCPU(&CPU);
 	sys.AttachDevice(&ram, 0);
+	
+	std::stringstream hex;
+	hex << "54 bc  7c 04";
 
-	ram.PokeWord(0, 0x849C); // ADD r4, imm
-	ram.PokeWord(2, 0xffff); // -1
-	ram.PokeWord(4, 0x80d8); // ADD r0, [a0 + 6]
-	ram.PokeWord(6, 0x8c80);
-	ram.PokeWord(8, 0x8c80); // SUB r4, r0
+	ram.PokeWord(60, 0xabcd);
 
-	CPU.ITick();
-	CPU.ITick();
-	CPU.ITick();
+	int i = ram.PokeByteHexStream(0, &hex);
 
+	CPU.PrintState(&std::cout);
+	CPU.ITick();
+	CPU.PrintState(&std::cout);
+	CPU.ITick();
+	CPU.PrintState(&std::cout);
+
+	//ram.HexDump(&std::cout, 0, 255);
+	//CPU.PrintState(&std::cout);
 	getchar();
 
 	return 0;

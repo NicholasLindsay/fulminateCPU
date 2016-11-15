@@ -3,6 +3,7 @@
 #include "computersystem.h"
 
 #include <iostream>
+#include <iomanip>
 
 using namespace CNOSim;
 
@@ -21,10 +22,17 @@ void FulminateCPU::ITick()
 
 	// Decode instruction
 	int bw = extract(instr, 7, 7); // byte/word field
+
+	/* Look at upper two bits then decide what to do */
 	switch (instr >> 14)
 	{
+	case 1: { // GET/SET EXTENDED INSTRUCTIONS
+		ExtendedMemOp(instr, bw);
+		break;
+	}
 	case 2: { // ALL TWO OPERAND ALU INSTRUCTIONS
-		ALUOperation(instr, bw);
+		ALUTwoOp(instr, bw);
+		break;
 		}
 	}
 }
@@ -36,6 +44,51 @@ void FulminateCPU::Reset()
 
 	// Clear flags
 	flags = 0;
+}
+
+/* Prints out the state of internal registers and flags */
+void FulminateCPU::PrintState(std::ostream* str)
+{
+	// Save state
+	std::ios::fmtflags fstate(str->flags());
+
+	// Set up hex output
+	*str << std::hex << std::setfill('0') << std::right;
+
+	// Title
+	*str << "\t\tCPU Status\t\t\n";
+
+	// Print out address registers
+	*str << "ADR: \t";
+	for (int i = 0; i < 4; i++) {
+		*str << "a" << i << ": ";
+		*str << std::setw(8) << adr[i] << "        ";
+	}
+	*str << "\n";
+	
+	*str << "GPR:\t";
+	for (int i = 0; i < 8; i++) {
+		*str << "g" << i << ": ";
+		*str << std::setw(4) << std::right << gpr[i] << "  ";
+	}
+	*str << "\n";
+
+	// Print out addr
+	
+	// Print out PC and flags
+	*str << "\tPC:     " << std::setw(8) << pc << "\t\t     Flags: ";
+	*str << std::setw(4) << flags << "  (";
+
+	// Print out flags with letter if set and dash if unset/dc
+	*str << "------------";
+	*str << ((flags & OVERFLOWBIT) ? 'O' : '-');
+	*str << ((flags & ZEROBIT) ? 'Z' : '-');
+	*str << ((flags & SIGNBIT) ? 'S' : '-');
+	*str << ((flags & CARRYBIT) ? 'C' : '-');
+	*str << ")\n";
+
+	// Restore state
+	str->flags(fstate);
 }
 
 /* Tests all effective address calculations */
@@ -57,10 +110,10 @@ Word FulminateCPU::GetOperand(int op, int bw)
 
 	// Otherwise, get from memory
 	Address ea = GetEffectiveAddress(op, bw);
-	if (bw == 0) {
-		return mSys->BusReadByte(ea);
+	if (bw == 1) {
+		return ReadBusByteProper(ea);
 	}
-	else if (bw == 1) {
+	else if (bw == 0) {
 		return mSys->BusReadWord(ea);
 	}
 
@@ -134,67 +187,95 @@ Address FulminateCPU::GetEffectiveAddress(int op, int bw)
 	return 0;
 }
 
-/* Executes an instruction in the ALU, updating flags as neccessary */
-void FulminateCPU::ALUOperation(Word opcode, int bw)
+/* Executes a two operand ALU instruction (opcodes 10xxx) */
+void FulminateCPU::ALUTwoOp(Word opcode, int bw)
 {
-	int alu_op = extract(opcode, 13, 11);
+	/* Decode ALU opcode direct from instruction */
+	ALUOp_t alu_op = (ALUOp_t) extract(opcode, 13, 11);
+
+	/* Fetch operands */
 	Word reg_a = extract(opcode, 10, 8);
 	Word op = GetOperand(opcode, bw); // data value of operand b
 	Word reg_val = gpr[reg_a]; // data value of operand a
-	Word result;
+
 	int carry_in = flags & SIGNBIT;
 
-	switch (alu_op){
-	case 0: // ADD
-	{
-		int sum = (int)reg_val + (int)op;
-		UpdateCarry(sum);
+	/* Perform operation, keep result */
+	Word result = ALUOp(alu_op, bw, reg_val, op);
 
-		// Do a cast and hope it works -> not sure and neccesary
-		result = (Word)(sum & 0xffff);
+	/* Store result back into register file */
+	gpr[reg_a] = result;
+}
+
+/* Updates the carry flag depending on result of arithmetic sum */
+void FulminateCPU::UpdateCarry(int sum)
+{
+	if (sum & 0x10000) { // if carry, set flag
+		flags |= CARRYBIT;
+	}
+	else { // otherwise mask out flag
+		flags &= !CARRYBIT;
+	}
+}
+
+/* Performs an ALU calculation, updates flags, and returns result */
+Word FulminateCPU::ALUOp(FulminateCPU::ALUOp_t op, int bw, Word a, Word b)
+{
+	Word result = a;
+	int carry_in = flags & SIGNBIT;
+
+	switch (op) {
+	case ADD : {
+		int sum = (int)a + (int)b;
+		UpdateCarry(sum);
+		// Do a cast and hope it works -> not sure if neccesary
+		result = (sum & 0xffff);
 		break;
 	}
-	case 1: // SUB
+	case SUB: {
+		int sum = (int)a + (int)~b + 1; // 2's complement
+		UpdateCarry(sum);
+		result = (sum & 0xffff);
+		break;
+	}
+	case ADC: // ADC
 	{
-		int sum = (int) reg_val + (int)(Word) ~op + 1; // 2's complement
+		int sum = (int)a + (int)b + carry_in;
 		UpdateCarry(sum);
 		result = (Word)(sum & 0xffff);
 		break;
 	}
-	case 2: // ADC
+	case SWB: // SBB
 	{
-		int sum = (int)reg_val + (int)op + carry_in;
+		int sum = (int)a + (int)~b + 1 - carry_in;
 		UpdateCarry(sum);
 		result = (Word)(sum & 0xffff);
 		break;
 	}
-	case 3: // SBB
+	case AND:
 	{
-		int sum = (int)reg_val + (int)(Word)~op + 1 - carry_in;
-		UpdateCarry(sum);
-		result = (Word)(sum & 0xffff);
+		result = a & b;
 		break;
 	}
-	case 4: // AND
+	case CMP:
 	{
-		result = reg_val & op;
-		break;
-	}
-	case 5: // CMP
-	{
-		int sum = (int)reg_val - (int)op;
+		int sum = (int)a - (int)b;
 		UpdateCarry(sum);
 		break;
 	}
-	case 6: // XOR
+	case XOR:
 	{
-		result = reg_val ^ op;
+		result = a ^ b;
 		break;
 	}
-	case 7: // OR
+	case OR:
 	{
-		result = reg_val | op;
+		result = a | b;
 		break;
+	}
+	case TEST:
+	{
+		result = a & b;
 	}
 	}
 
@@ -213,16 +294,43 @@ void FulminateCPU::ALUOperation(Word opcode, int bw)
 		flags &= ~SIGNBIT;
 	}
 
-	gpr[reg_a] = result;
+	// If TEST, set a as result
+	if (op == TEST) return a;
+
+	// otherwise, return result
+	return result;
 }
 
-/* Updates the carry flag depending on result of arithmetic sum */
-void FulminateCPU::UpdateCarry(int sum)
+/* Performs an Extended Memory Operation*/
+void FulminateCPU::ExtendedMemOp(Word opcode, int bw)
 {
-	if (sum & 0x10000) { // if carry, set flag
-		flags |= CARRYBIT;
+	/* Extract addr_reg and gpr_reg from opcode */
+	int addr_reg = extract(opcode, 13, 12);
+	int gpr_reg = extract(opcode, 10, 8);
+
+	/* Convert offset field into a whole word */
+	Word offset = sext_w(extract(opcode, 6, 0), 7);
+
+	/* Decide if this is a get or set */
+	int isSet = extract(opcode, 11, 11);
+
+	/* Find the effective memory address */
+	Address ea = adr[addr_reg] + offset;
+
+	/* If instruction is GET (i.e. load from memory) */
+	if (isSet == 0) {
+		if (bw) gpr[gpr_reg] = ReadBusByteProper(ea);
+		else gpr[gpr_reg] = mSys->BusReadWord(ea);
 	}
-	else { // otherwise mask out flag
-		flags &= !CARRYBIT;
+	/* Otherwise, instruction is SET (i.e. store to memory) */
+	else {
+		if (bw) mSys->BusWriteByte(ea, gpr[gpr_reg] & 0xff);
+		else mSys->BusWriteWord(ea, gpr[gpr_reg]);
 	}
 }
+
+/* Reads a byte from the system bus and sign extends */
+Word FulminateCPU::ReadBusByteProper(Address addr)
+{
+	return sext_w(mSys->BusReadByte(addr), 8);
+};

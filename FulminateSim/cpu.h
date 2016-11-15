@@ -1,5 +1,6 @@
 #pragma once
 #include "types.h"
+#include <iostream>
 
 namespace CNOSim
 {
@@ -15,6 +16,7 @@ namespace CNOSim
 
 		virtual void ITick() = 0;
 		virtual void Reset() = 0;
+		virtual void PrintState(std::ostream* str) const {};
 
 		CPU(CPU const &) = delete;
 		CPU& operator=(CPU const &) = delete;

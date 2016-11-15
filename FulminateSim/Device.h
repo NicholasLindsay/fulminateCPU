@@ -56,6 +56,21 @@ namespace CNOSim {
 		Address mAddr;
 	};
 
+	/* Error thrown when input file in incorrect format */
+	class FileFormatException : public std::exception{
+	public:
+		FileFormatException(const char* mes)
+			: message(mes) {}
+		virtual const char* What() const
+		{
+			util_ss.clear();
+			util_ss << "Error in reading file: " << message;
+			return util_ss.str().c_str();
+		}
+	private:
+		const char* message;
+	};
+
 	/* Abstract class for hardware device */
 	class Device {
 		friend class ComputerSystem;
@@ -97,7 +112,12 @@ namespace CNOSim {
 		virtual Byte PeekByte(Address addr);
 		virtual Word PeekWord(Address addr);
 		virtual void PokeByte(Address addr, Byte data);
+		virtual void PokeByteString(Address addr, const char* str, int sz);
+		virtual int PokeByteHexStream(Address addr, std::istream* str);
 		virtual void PokeWord(Address addr, Word data);
+
+		virtual void HexDump(std::ostream* str, Address start, Address end);
+		
 
 		virtual uint32_t AddressRange() const { return mContents.size(); };
 	protected:
