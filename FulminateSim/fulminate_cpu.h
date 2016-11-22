@@ -46,5 +46,6 @@ namespace CNOSim
 		Word ALUOp(ALUOp_t op, int bw, Word a, Word b);
 		void ExtendedMemOp(Word opcode, int bw);
 		Word ReadBusByteProper(Address addr);
+		void BranchInstruction(Word opcode);
 	};
 }

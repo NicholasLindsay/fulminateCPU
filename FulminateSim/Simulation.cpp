@@ -10,9 +10,9 @@ Simulation::Simulation()
 	mSys.AttachCPU(&mCpu);
 	mSys.AttachDevice(mRAM, 0);
 
-	// Load following values to run first test program
+	// Load following values to run test program
 	std::stringstream hex;
-	hex << "40 20 41 22 81 14 00 26 90 14 00 24 48 BE 49 BF";
+	hex << "80 1C 00 01 3F FD";
 
 	// Constants
 	mRAM->PokeWord(32, 0x0123);

@@ -7,6 +7,7 @@ namespace CNOSim {
 	typedef unsigned short Word;
 	typedef signed short SWord;
 	typedef unsigned int Address;
+	typedef signed int SDWord;
 
 	typedef unsigned short reg16;
 	typedef unsigned int reg32;
@@ -15,4 +16,5 @@ namespace CNOSim {
 	Word extract(Word data, int high_bit, int low_bit);
 	/* Sign extend a field of width w into a word */
 	Word sext_w(Word data, int w);
+
 }

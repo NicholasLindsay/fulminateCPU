@@ -26,6 +26,17 @@ void FulminateCPU::ITick()
 	/* Look at upper two bits then decide what to do */
 	switch (instr >> 14)
 	{
+	case 0: { // HOBBLY GOBBLY
+		if (extract(instr, 13, 13) == 1) {
+			if (extract(instr, 12, 11) == 0) { // TEST
+
+			}
+			else { // BRANCH
+				BranchInstruction(instr);
+			}
+		}
+		break;
+	}
 	case 1: { // GET/SET EXTENDED INSTRUCTIONS
 		ExtendedMemOp(instr, bw);
 		break;
@@ -345,51 +356,51 @@ void FulminateCPU::BranchInstruction(Word opcode)
 	int cond = extract(opcode, 12, 9);
 	
 	switch (cond) {
-	0x4: { // BEQ (BZ)
-		take_branch = flags & ZERO_BIT;
+	case 0x4: { // BEQ (BZ)
+		take_branch = flags & ZEROBIT;
 		break;
 	}
-	0x5: { // BNE (BNZ)
-		take_branch = !(flags & ZERO_BIT);
+	case 0x5: { // BNE (BNZ)
+		take_branch = !(flags & ZEROBIT);
 		break;
 	}
-	0x6: { // BGTU
-		take_branch = (flags & CARRY_BIT & !ZERO_BIT);
+	case 0x6: { // BGTU
+		take_branch = (flags & CARRYBIT & !ZEROBIT);
 		break;
 	}
-	0x7: { // BLEU
-		take_branch = !(flags & CARRY_BIT & !ZERO_BIT);
+	case 0x7: { // BLEU
+		take_branch = !(flags & CARRYBIT & !ZEROBIT);
 		break;
 	}
-	0x8: { // BC
-		take_branch = (flags & CARRY_BIT);
+	case 0x8: { // BC
+		take_branch = (flags & CARRYBIT);
 		break;
 	}
-	0x9: { // BNC
-		take_branch = !(flags & CARRY_BIT);
+	case 0x9: { // BNC
+		take_branch = !(flags & CARRYBIT);
 		break;
 	}
-	0xa: { // BGT (signed)
-		take_branch = (flags & !CARRY_BIT & !ZERO_BIT);
+	case 0xa: { // BGT (signed)
+		take_branch = (flags & !CARRYBIT & !ZEROBIT);
 		break;
 	}
-	0xb: { // BLEU (signed)
-		take_branch = !(flags & !CARRY_BIT & !ZERO_BIT);
+	case 0xb: { // BLEU (signed)
+		take_branch = !(flags & !CARRYBIT & !ZEROBIT);
 		break;
 	}
-	0xc: { // BGE (signed)
-		take_branch = (flags & !CARRY_BIT);
+	case 0xc: { // BGE (signed)
+		take_branch = (flags & !CARRYBIT);
 		break;
 	}
-	0xd: { // BLT (signed)
-		take_branch = !(flags & !CARRY_BIT);
+	case 0xd: { // BLT (signed)
+		take_branch = !(flags & !CARRYBIT);
 		break;
 	}
-	0xe: { // BOV
-		take_branch = (flags & OVERFLOW_BIT);
+	case 0xe: { // BOV
+		take_branch = (flags & OVERFLOWBIT);
 		break;
 	}
-	0xf: { // Branch always
+	case 0xf: { // Branch always
 		take_branch = true;
 		break;
 	}
@@ -400,11 +411,15 @@ void FulminateCPU::BranchInstruction(Word opcode)
 	
 	if (take_branch) {
 		// Get offset from lower 9 bits
-		Address offset = sext(extract(opcode, 8, 0));	
+		signed int offset = (SWord) sext_w(extract(opcode, 8, 0),9);	
 		
 		// Add this to pc (branch address is relative to PC + 2)
 		// i.e. offset = dest - opcode_addr - 2
-		pc += offset;
+		// remember offset in words, not bytes
+		pc += (offset << 1);
+	}
+	else {
+		pc += 2;
 	}
 	
 	return;
