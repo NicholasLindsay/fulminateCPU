@@ -108,6 +108,9 @@ int RAMDevice::PokeByteHexStream(Address addr, std::istream* str)
 			throw FileFormatException("Hex input exceeds one byte");
 		}
 		else {
+			if (addr >= mContents.size()) {
+				throw AddressOutOfRangeException(addr, mContents.size());
+			}
 			mContents[addr++] = data_in;
 			byte_count++;
 		}

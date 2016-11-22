@@ -222,7 +222,7 @@ void FulminateCPU::UpdateCarry(int sum)
 Word FulminateCPU::ALUOp(FulminateCPU::ALUOp_t op, int bw, Word a, Word b)
 {
 	Word result = a;
-	int carry_in = flags & SIGNBIT;
+	int carry_in = flags & CARRYBIT;
 
 	switch (op) {
 	case ADD : {

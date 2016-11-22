@@ -78,12 +78,14 @@
   <ItemGroup>
     <Text Include="Programmer Documentation.txt" />
     <Text Include="ReadMe.txt" />
+    <Text Include="TestPrograms.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="computersystem.h" />
     <ClInclude Include="cpu.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="fulminate_cpu.h" />
+    <ClInclude Include="simulation.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="types.h" />
@@ -94,6 +96,7 @@
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="FulminateSim.cpp" />
     <ClCompile Include="fulminate_cpu.cpp" />
+    <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

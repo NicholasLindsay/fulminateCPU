@@ -1,0 +1,22 @@
+Test Program 1:	Add two 32 bit numbers, storing result in memory.
+This program assumes address registers are initially 0
+
+.code
+	GET r0, (Number1); -- load MSB into r0
+		4020
+	GET r1, (Number1 + 1); -- Load LSB into r1
+		4122
+	ADD r1, (Number2 + 1); -- Add Number2 LSB onto r1
+		8114 0026
+	ADC r0, (Number2); -- finish addition
+		9014 0024
+	STW r0, (Result); -- store result
+		48BE
+	STW r1, (Result + 1);
+		49BF
+.data
+Number1:	0x01234567 (address = 32 = 100000b)
+Number2:	0x89abcdef (address = 36 = 0x24)
+
+.bss
+Result: resw 2;

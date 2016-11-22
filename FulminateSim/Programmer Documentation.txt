@@ -28,8 +28,8 @@ byte), or for read-only memory to be altered:
 
 PeekByte, PeekWord, PokeByte, PokeWord (same format as above).
 
-The AddressRange() should return the greatest memory address for the device if
-counting starts at 0. For example, if a device has registers from 0x0 to 0xf, 
+The AddressRange() should return the number of memory locations occupied
+by the device. For example, if a device has registers from 0x0 to 0xf, 
 the address range would be 15.
 
 Any device must inherit the Device class.

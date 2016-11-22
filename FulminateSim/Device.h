@@ -11,7 +11,8 @@
 namespace CNOSim {
 	class ComputerSystem;
 
-	static std::ostringstream util_ss; // utility string stream - used for exception what()s
+	static std::stringstream util_ss; // utility string stream - used for exception what()s
+	static std::string util_s;
 
 	/* Error thrown when attempting to access a memory location beyond the range of a device*/
 	class AddressOutOfRangeException : public std::exception {
@@ -20,12 +21,16 @@ namespace CNOSim {
 			:mAddr(addr), mSize(size){}
 
 		virtual const char* what() const {
+			util_ss = std::stringstream();
 			util_ss.clear();
 
-			util_ss << "Address " << std::hex << mAddr << " is out of range. Memory size is "
-				<< mSize;
+			util_ss << "Address " << std::hex << mAddr << " is out of range. Memory size is " <<
+				std::hex << (unsigned int)mSize << ".";
+			util_ss.put(0);
 
-			return util_ss.str().c_str();
+			util_s = util_ss.str();
+
+			return util_s.c_str();
 		}
 
 
@@ -44,11 +49,14 @@ namespace CNOSim {
 			: mAddr(addr) {};
 
 		virtual const char* what() const {
+			util_ss = std::stringstream();
 			util_ss.clear();
 
 			util_ss << "Attempted to read/write data accross an alignment boundary at address: " << std::hex << mAddr;
 
-			return util_ss.str().c_str();
+			util_s = util_ss.str();
+
+			return util_s.c_str();
 		}
 
 		Address getAddr() const { return mAddr; }
@@ -57,15 +65,19 @@ namespace CNOSim {
 	};
 
 	/* Error thrown when input file in incorrect format */
-	class FileFormatException : public std::exception{
+	class FileFormatException : public std::exception
+	{
 	public:
 		FileFormatException(const char* mes)
 			: message(mes) {}
-		virtual const char* What() const
+		virtual const char* what() const
 		{
-			util_ss.clear();
+			util_ss = std::stringstream();
 			util_ss << "Error in reading file: " << message;
-			return util_ss.str().c_str();
+
+			util_s = util_ss.str();
+
+			return util_s.c_str();
 		}
 	private:
 		const char* message;
