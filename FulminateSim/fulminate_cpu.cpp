@@ -334,3 +334,78 @@ Word FulminateCPU::ReadBusByteProper(Address addr)
 {
 	return sext_w(mSys->BusReadByte(addr), 8);
 };
+
+/* Performs a branch instruction */
+void FulminateCPU::BranchInstruction(Word opcode)
+{
+	// Decide if branch should be taken
+	bool take_branch = false;
+	
+	// the condition is encoded by bits 12-9 of the instruction
+	int cond = extract(opcode, 12, 9);
+	
+	switch (cond) {
+	0x4: { // BEQ (BZ)
+		take_branch = flags & ZERO_BIT;
+		break;
+	}
+	0x5: { // BNE (BNZ)
+		take_branch = !(flags & ZERO_BIT);
+		break;
+	}
+	0x6: { // BGTU
+		take_branch = (flags & CARRY_BIT & !ZERO_BIT);
+		break;
+	}
+	0x7: { // BLEU
+		take_branch = !(flags & CARRY_BIT & !ZERO_BIT);
+		break;
+	}
+	0x8: { // BC
+		take_branch = (flags & CARRY_BIT);
+		break;
+	}
+	0x9: { // BNC
+		take_branch = !(flags & CARRY_BIT);
+		break;
+	}
+	0xa: { // BGT (signed)
+		take_branch = (flags & !CARRY_BIT & !ZERO_BIT);
+		break;
+	}
+	0xb: { // BLEU (signed)
+		take_branch = !(flags & !CARRY_BIT & !ZERO_BIT);
+		break;
+	}
+	0xc: { // BGE (signed)
+		take_branch = (flags & !CARRY_BIT);
+		break;
+	}
+	0xd: { // BLT (signed)
+		take_branch = !(flags & !CARRY_BIT);
+		break;
+	}
+	0xe: { // BOV
+		take_branch = (flags & OVERFLOW_BIT);
+		break;
+	}
+	0xf: { // Branch always
+		take_branch = true;
+		break;
+	}
+	default: { // Never branch - SHOULD NEVER REACH HERE
+		take_branch = false;
+	}
+	}
+	
+	if (take_branch) {
+		// Get offset from lower 9 bits
+		Address offset = sext(extract(opcode, 8, 0));	
+		
+		// Add this to pc (branch address is relative to PC + 2)
+		// i.e. offset = dest - opcode_addr - 2
+		pc += offset;
+	}
+	
+	return;
+}
