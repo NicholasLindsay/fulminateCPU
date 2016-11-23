@@ -38,14 +38,24 @@ namespace CNOSim
 		reg32 adr[4];
 		reg16 flags;
 
+		// Instruction functions:
+		void BranchInstruction(Word opcode); 
+		void ALUTwoOp(Word opcode, int bw);
+		void ExtendedMemOp(Word opcode, int bw);
+		void ShortImmOp(Word opcode);
+		void GetTwoOp(Word opcode, int bw);
+		void SetTwoOp(Word opcode, int bw);
+
+		// Internal helper functions:
+		Word ALUOp(ALUOp_t op, int bw, Word a, Word b);
 		Word GetOperand(int operand, int bw);
 		Word GetByteOrWord(Address addr, int bw);
 		Address GetEffectiveAddress(int operand, int bw);
-		void ALUTwoOp(Word opcode, int bw);		
 		void UpdateCarry(int sum);
-		Word ALUOp(ALUOp_t op, int bw, Word a, Word b);
-		void ExtendedMemOp(Word opcode, int bw);
 		Word ReadBusByteProper(Address addr);
-		void BranchInstruction(Word opcode);
+		void GetTwoOpOperands(Word opcode, int bw, int* reg_a, Word* op);
+		
+		
+
 	};
 }

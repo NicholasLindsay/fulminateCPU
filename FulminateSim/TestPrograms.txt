@@ -20,3 +20,23 @@ Number2:	0x89abcdef (address = 36 = 0x24)
 
 .bss
 Result: resw 2;
+
+Test Program 2: Count down from 1 to 0, then exit
+.code
+		GET smth -- need an assembler!
+			D7 8F
+		SET smth
+			DF 41
+		GET r2, 3; 
+			F2 03 -- addr 0
+loop:	CMPI r2, 0;
+			E9 00 -- addr 2
+		BEQ done;
+			28 02 -- addr 4
+		SUBI r2, 1;
+			C9 01 -- addr 6
+		BRA LOOP;
+			3F FC -- addr 8
+done:	BRA done; -- infinite loop
+			3F FF -- addr a
+		

@@ -12,7 +12,7 @@ Simulation::Simulation()
 
 	// Load following values to run test program
 	std::stringstream hex;
-	hex << "80 1C 00 01 3F FD";
+	hex << "d7 8f df 41 f2 03 E9 00 28 02 C9 01 3F FC 3F FF";
 
 	// Constants
 	mRAM->PokeWord(32, 0x0123);

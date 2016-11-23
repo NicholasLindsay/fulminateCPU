@@ -45,6 +45,29 @@ void FulminateCPU::ITick()
 		ALUTwoOp(instr, bw);
 		break;
 		}
+	case 3: { // 11xxx - ADDI/SUBI/GET/SET/ANDI/CMPI/GETI/ORI
+		int bits13to11 = extract(instr, 13, 11);
+		switch (bits13to11) {
+		case 0: // ADDI (fall through)
+		case 1: // SUBI (fall through)
+		case 4: // ANDI (fall through)
+		case 5: // CMPI (fall through)
+		case 6: // GETI (fall through)
+		case 7: { // ORI
+			ShortImmOp(instr);
+			break;
+		}
+		case 2: { // GET (two op)
+			GetTwoOp(instr, bw);
+			break;
+		}
+		case 3: { // SET (two op)
+			SetTwoOp(instr, bw);
+			break;
+		}
+		}
+		break;
+	}
 	}
 }
 
@@ -172,7 +195,7 @@ Address FulminateCPU::GetEffectiveAddress(int op, int bw)
 		return adr[rA] + 8;
 	}
 	else if (extract(op, 5, 2) == 5) { // [rA + imm16]
-		Address rv = adr[rA] + mSys->BusReadWord(pc);
+		Address rv = adr[rA] + (SWord) mSys->BusReadWord(pc);
 		pc += 2;
 		return rv;
 	}
@@ -418,9 +441,72 @@ void FulminateCPU::BranchInstruction(Word opcode)
 		// remember offset in words, not bytes
 		pc += (offset << 1);
 	}
-	else {
-		pc += 2;
-	}
 	
 	return;
+}
+
+/* Performs an 8 bit immediate instruction (ADDI, ANDI, CMPI, GETI, ORI) */
+void FulminateCPU::ShortImmOp(Word opcode)
+{
+	// Extract instruction parameters
+	// Note that alu_op = 6 is NOT xor. This is handled below.
+	ALUOp_t alu_op = (ALUOp_t) extract(opcode, 13, 11);
+	Word reg_a = extract(opcode, 10, 8);
+	Word imm = extract(opcode, 7, 0);
+
+	Word res;
+
+	// Is operation GETI?
+	if (alu_op == 6) {
+		res = imm;
+	}
+	// Perform alu operation
+	else {
+		Word res = ALUOp(alu_op, 0, gpr[reg_a], imm);
+	}
+
+	// Store result
+	gpr[reg_a] = res;
+}
+
+/* Performs the 2-operand GET instruction */
+void FulminateCPU::GetTwoOp(Word opcode, int bw) 
+{
+	/* Fetch operands */
+	int reg_a;
+	Word op_2;
+	GetTwoOpOperands(opcode, bw, &reg_a, &op_2);
+	
+	/* Perform operation */
+	gpr[reg_a] = op_2;
+}
+
+/* Fetches reg_a register number and operand value for two-op instructions */
+void FulminateCPU::GetTwoOpOperands(Word opcode, int bw, int* reg_a, Word* op)
+{
+	*reg_a = extract(opcode, 10, 8);
+	*op = GetOperand(opcode, bw); // data value of operand b
+}
+
+/* Performs a Set instruction with a register and a multi-operand */
+void FulminateCPU::SetTwoOp(Word opcode, int bw)
+{
+	// Extract multioperand
+	int multi_op = extract(opcode, 6, 0);
+	int reg = extract(opcode, 10, 8);
+
+	// If non-memory and non-register, do nothing
+	if (extract(multi_op, 6, 2) == 7) {
+		// do nothing
+	}
+	else {
+		Address ea = GetEffectiveAddress(opcode, bw);
+
+		if (bw) {
+			mSys->BusWriteByte(ea, gpr[reg]);
+		}
+		else {
+			mSys->BusWriteWord(ea, gpr[reg]);
+		}
+	}
 }
