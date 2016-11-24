@@ -11,7 +11,6 @@ namespace CNOSim
 		virtual void ITick();
 		virtual void Reset();
 		virtual void PrintState(std::ostream* str);
-		void UnitTest();
 
 		enum FlagBits {
 			CARRYBIT = 1,
@@ -54,8 +53,6 @@ namespace CNOSim
 		void UpdateCarry(int sum);
 		Word ReadBusByteProper(Address addr);
 		void GetTwoOpOperands(Word opcode, int bw, int* reg_a, Word* op);
-		
-		
 
 	};
 }

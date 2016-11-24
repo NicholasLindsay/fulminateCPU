@@ -125,11 +125,6 @@ void FulminateCPU::PrintState(std::ostream* str)
 	str->flags(fstate);
 }
 
-/* Tests all effective address calculations */
-void FulminateCPU::UnitTest()
-{
-}
-
 /* Fetches the data from a multi-operand */
 Word FulminateCPU::GetOperand(int op, int bw)
 {
