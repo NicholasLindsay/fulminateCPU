@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FulminateSim", "FulminateSim\FulminateSim.vcxproj", "{B8E2B910-505D-4AED-B987-FDA26960E9D2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FulminateASM", "FulminateASM\FulminateASM.vcxproj", "{2071F0BC-5A7A-4418-8B00-7B229D3C7FED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{B8E2B910-505D-4AED-B987-FDA26960E9D2}.Debug|Win32.Build.0 = Debug|Win32
 		{B8E2B910-505D-4AED-B987-FDA26960E9D2}.Release|Win32.ActiveCfg = Release|Win32
 		{B8E2B910-505D-4AED-B987-FDA26960E9D2}.Release|Win32.Build.0 = Release|Win32
+		{2071F0BC-5A7A-4418-8B00-7B229D3C7FED}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2071F0BC-5A7A-4418-8B00-7B229D3C7FED}.Debug|Win32.Build.0 = Debug|Win32
+		{2071F0BC-5A7A-4418-8B00-7B229D3C7FED}.Release|Win32.ActiveCfg = Release|Win32
+		{2071F0BC-5A7A-4418-8B00-7B229D3C7FED}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
