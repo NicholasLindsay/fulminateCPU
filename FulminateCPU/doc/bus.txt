@@ -1,0 +1,9 @@
+/-------------------------------------------------------------------------\
+/ Fulminate Bus Specification V1.0		- 11/12/2016              \
+
+The bus used in the Fulminate system is very simple. It allows half-duplex communication between the master (the CPU) and the slave, with up to one 16 bit word transferred per clock cycle. The bus includes two byte-select lines which allows the upper and lower bytes to be written independantly. There is an active high chip select line which when disabled prevents any transfer between master and slave. There is a wait line that a chip may assert signalling to the master that the data is not ready. A bus transaction can only be completed when the wait line is low. Clock (clk) and a synchronous reset (rst) lines are also described. All data transfers are sychronous to the rising edge of clk.
+
+The operation of the bus is very simple.
+
+/ Master to Slave Transfer of a single byte:
+

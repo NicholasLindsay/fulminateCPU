@@ -2,8 +2,18 @@
 <DARoots Version="1" Minor="26">
   <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/src/FulBusRAMinternal.vhd">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="FulBusRAM"/>
+      <Option Name="TopLib" Val="work"/>
+      <Option Name="TopArchitecture" Val="beh"/>
+      <Option Name="TopRTLFile" Val="$PPRDIR/src/FulBusRAMinternal.vhd"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
