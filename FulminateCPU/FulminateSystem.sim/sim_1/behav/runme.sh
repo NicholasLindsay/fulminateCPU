@@ -33,6 +33,6 @@ ExecStep()
    fi
 }
 
-FUSE_1="C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.sim/sim_1/behav/FulBusRAM_tb.prj"
+FUSE_1="C:/Users/Nicholas/Desktop/Fulminate CPU/v3/fulminateCPU/FulminateCPU/FulminateSystem.sim/sim_1/behav/alu_tb.prj"
 
-ExecStep fuse -intstyle pa -incremental -L work -L secureip -o FulBusRAM_tb.exe --prj "$FUSE_1" -top work.FulBusRAM_tb
+ExecStep fuse -intstyle pa -incremental -L work -L secureip -o alu_tb.exe --prj "$FUSE_1" -top work.alu_tb

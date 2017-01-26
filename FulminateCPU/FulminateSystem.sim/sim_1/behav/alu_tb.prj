@@ -1,0 +1,3 @@
+vhdl work "C:/Users/Nicholas/Desktop/Fulminate CPU/v3/fulminateCPU/FulminateCPU/src/alu.vhd"
+vhdl work "C:/Users/Nicholas/Desktop/Fulminate CPU/v3/fulminateCPU/FulminateCPU/tb/alu_tb.vhd"
+verilog work C:/Xilinx/14.7/ISE_DS/PlanAhead/data/verilog/src/glbl.v

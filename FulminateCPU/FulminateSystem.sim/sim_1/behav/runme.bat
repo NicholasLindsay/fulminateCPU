@@ -10,7 +10,7 @@ set PATH=%XILINX%\lib\%PLATFORM%;%XILINX%\bin\%PLATFORM%;C:/Xilinx/14.7/ISE_DS/E
 
 set XILINX_PLANAHEAD=C:/Xilinx/14.7/ISE_DS/PlanAhead
 
-fuse -intstyle pa -incremental -L work -L secureip -o FulBusRAM_tb.exe --prj \"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.sim/sim_1/behav/FulBusRAM_tb.prj\" -top work.FulBusRAM_tb
+fuse -intstyle pa -incremental -L work -L secureip -o alu_tb.exe --prj \"C:/Users/Nicholas/Desktop/Fulminate CPU/v3/fulminateCPU/FulminateCPU/FulminateSystem.sim/sim_1/behav/alu_tb.prj\" -top work.alu_tb
 if errorlevel 1 (
    cmd /c exit /b %errorlevel%
 )
