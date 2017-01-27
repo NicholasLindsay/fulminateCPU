@@ -1,10 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <inttypes.h>
 #include <string.h>
+#include "token.h"
 
 #define TOKEN_STRING_BUF_SIZE 50
+
+/*
+Instruction table lists every instruction and format. Instructions with more
+than one format must follow immidetialy after one another, and table must be
+null-terminated
+*/
+const InstrDescriptor INSTR_TABLE[] = {
+		{ "TST", TWOOP_I, 0x2000 },
+		{ "BEQ", BRANCH_I, 0x2800 },
+		{ "BNE", BRANCH_I, 0x2A00 },
+		{ "BGTU", BRANCH_I, 0x2C00 },
+		{ "BLEU", BRANCH_I, 0x2E00 },
+		{ "BC", BRANCH_I, 0x3000 },
+		{ "BNC", BRANCH_I, 0x3200 },
+		{ "BGT", BRANCH_I, 0x3400 },
+		{ "BLTE", BRANCH_I, 0x3600 },
+		{ "BGE", BRANCH_I, 0x3800 },
+		{ "BLT", BRANCH_I, 0x3A00 },
+		{ "BOV", BRANCH_I, 0x3C00 },
+		{ "BRA", BRANCH_I, 0x3E00 },
+		{ "GET", EXTEN_I, 0x4000 },
+		{ "GET", TWOOP_I, 0xD000 },
+		{ "GET", IMM8_I, 0xF000 },
+		{ "GET.B", EXTEN_I, 0x4080 },
+		{ "GET.B", TWOOP_I, 0xD080 },
+		{ "ADD", TWOOP_I, 0x8000 },
+		{ "ADD", IMM8_I, 0xC000 },
+		{ "ADD.B", TWOOP_I, 0x8080 },
+		{ "SUB", TWOOP_I, 0x8800 },
+		{ "SUB", IMM8_I, 0xC800 },
+		{ "SUB.B", TWOOP_I, 0x8880 },
+		{ "ADC", TWOOP_I, 0x9000 },
+		{ "ADC.B", TWOOP_I, 0x9080 },
+		{ "SWB", TWOOP_I, 0xa000 },
+		{ "SWB.B", TWOOP_I, 0xa080 },
+		{ "AND", TWOOP_I, 0xb000 },
+		{ "AND", IMM8_I, 0xe000 },
+		{ "AND.B", TWOOP_I, 0xb080 },
+		{ "CMP", TWOOP_I, 0xc000 },
+		{ "CMP", IMM8_I, 0xe800 },
+		{ "CMP.B", TWOOP_I, 0xc080 },
+		{ "XOR", TWOOP_I, 0xB000 },
+		{ "XOR.B", TWOOP_I, 0xB080 },
+		{ "OR", TWOOP_I, 0xB800 },
+		{ "OR", IMM8_I, 0xF800 },
+		{ "OR.B", TWOOP_I, 0xB880 },
+		{ "NOGETHERE", 0, 0x0000 }
+};
 
 /*
 	The code is then file reads from an input file a token and returns a token.
@@ -28,48 +76,105 @@ void UndoNextChar() {
 }
 
 /*
-	Instruction table contains the name, format and basic opcode for different instructions
+	Keywords are stored in a hash-table, which is initialised at program startup.
 */
 struct {
-	const char* name;
-	enum InstrFormat {
-		I_TWOOPERAND,
-		I_EXTENDED,
-		I_IMM,
-		I_BRANCH
-	} fmt;
-	uint16_t base_opcode;
-} InstrTable[] = {
-		{ "ADD", I_TWOOPERAND, 0xffaf },
-		{ "SUB", I_TWOOPERAND, 0xff1f }
-};
+	char* key;
+	Token keyword_tkn;
+} KeywordHashTable[256];
+
+// Forward declare
+int KeywordHasher();
+
+void InitHashTable()
+{
+	/* Initilise with instruction mneumonics */
+	int no_entries = sizeof(INSTR_TABLE) / sizeof(INSTR_TABLE[0]);
+
+	for (int i = 0; i < no_entries; i++){
+		char *istr = INSTR_TABLE[i].name;
+		int c = KeywordHasher(istr);
+
+		/* If entry exists and has a different value (remember multiple instr with same name allowed,
+		   as long as there are consecutive ) */
+		if (KeywordHashTable[c].key && strcmp(KeywordHashTable[c].key, istr))
+			printf("Overriding %s with %s.\n", KeywordHashTable[c].key, istr);
+
+		KeywordHashTable[c].key = istr;
+		KeywordHashTable[c].keyword_tkn.type = INSTRUCTION;
+		KeywordHashTable[c].keyword_tkn.value.idescript_ptr = &INSTR_TABLE[i];
+	}
+
+	/* Initilise with GPRs */
+	for (int i = 0; i <= 7; i++){
+		char* reg_nm = malloc(3 * sizeof(char));
+		reg_nm[0] = 'g';
+		reg_nm[1] = '0' + i;
+		reg_nm[2] = 0;
+		
+		int c = KeywordHasher(reg_nm);
+		if (KeywordHashTable[c].key) printf("Collision: %s and %s", reg_nm, KeywordHashTable[c].key);
+		KeywordHashTable[c].key = reg_nm;
+		KeywordHashTable[c].keyword_tkn.type = G_REGISTER;
+		KeywordHashTable[c].keyword_tkn.value.numeric_value = i;
+	}
+
+	/* Initilise with A regs */
+	for (int i = 0; i <= 3; i++){
+		char* reg_nm = malloc(3 * sizeof(char));
+		reg_nm[0] = 'a';
+		reg_nm[1] = '0' + i;
+		reg_nm[2] = 0;
+
+		int c = KeywordHasher(reg_nm);
+		if (KeywordHashTable[c].key) printf("Collision: %s and %s", reg_nm, KeywordHashTable[c].key);
+		KeywordHashTable[c].key = reg_nm;
+		KeywordHashTable[c].keyword_tkn.type = A_REGISTER;
+		KeywordHashTable[c].keyword_tkn.value.numeric_value = i;
+	}
+}
 
 /*
-	Stores a Token from the input stream
+	KeywordHasher implements the hash-function used for keywords
 */
-typedef struct Token
+int KeywordHasher(char* name)
 {
-	enum Type {
-		END_OF_FILE,
-		G_REGISTER,
-		A_REGISTER,
-		INSTRUCTION,
-		MACRO_INSTRUCTION,
-		NUMERIC_LITERAL,
-		TEXT_LITERAL,
-		COLON,
-		DOUBLE_COLON,
-		IDENTIFIER,
-		NEWLINE,
-		ILLEGAL_NUMBER, // OCTAL numbers with digits '8' or '9' for example
-		ILLEGAL_SYMBOL // symbol not in lexicon
-	} type;
+	int c = 0;
+	char* pos = name;
+
+	// Hashing function: this was chosen by trial and error
+	do {
+		c = (c << 1) ^ (*pos) ^ (c << 3) - 'c';
+		pos++;
+	} while (*pos != 0);
+	c = (c & 0xff);
+
+	return c;
+}
+
+/*
+	KeywordLookup - sets *tkn to  the looked up token, if found, and returns 1.
+					If unsuccessful, returns 0
+*/
+int KeywordLookup(char* str, Token* tkn) {
+	int hash_value = KeywordHasher(str);
+
+	if (KeywordHashTable[hash_value].key) {
+		if (strcmp(KeywordHashTable[hash_value].key, str) == 0) {
+			*tkn = KeywordHashTable[hash_value].keyword_tkn;
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+	else {
+		return 0;
+	}
+
 	
-	union {
-		uint32_t numeric_value;
-		char* string_value;
-	} value;
-} Token;
+}
+
 
 /*
 	Returns true if character is hexadecimal digit (lowercase)
@@ -88,28 +193,41 @@ int char_to_hex(char c) {
 }
 
 /*
-	Reads a Token from the input file, returning a token.
-
-	This is implemented as a series of if-then statements and do-while loops.
-	This could be implemented as an explicit FSM, however the following code 
-	serves the same purpose and is in my opinion easier to read.
-
-	ReadToken() ignores whitespace and ignores text after a character, however
-	it returns a token upon reaching a newline. This is because it certain
-	contexts a new line is important (i.e. it indicates the end of the instruction
-	operands) and others not so (after a line that contains only a comment).
-	ReadToken() may trim away this in the future.
-	
+	Tries to load a file for lexing. Returns 1 if successful, 0 otherwise
 */
-Token ReadToken()
+int LoadFile(const char* fname)
 {
+	source_file = fopen(fname, "r");
+	if (source_file == NULL) return 0;
+	else return 1;
+}
+
+/*
+Reads a Token from the input file, updating the current token.
+
+This is implemented as a series of if-then statements and do-while loops.
+This could be implemented as an explicit FSM, however the following code
+serves the same purpose and is in my opinion easier to read.
+
+NextToken() ignores whitespace and ignores text after a character, however
+it returns a token upon reaching a newline. This is because it certain
+contexts a new line is important (i.e. it indicates the end of the instruction
+operands) and others not so (after a line that contains only a comment).
+NextToken() may trim away this in the future.
+
+*/
+void NextToken()
+{
+	// Create a temporary variable tkn - unneccessary and should be optimised
+	// away in future
+	Token tkn;
+
 	int buf_idx = 0; int buffer_sz = 50;
 	char* buffer = malloc(buffer_sz * sizeof(char));
-	Token tkn;
 
 	// Fetch next character into curchar
 	NextChar();
-	
+
 	// Ignore whitespaces:
 	if (curchar == ' ' || curchar == '\t'){
 		do {
@@ -179,7 +297,7 @@ Token ReadToken()
 				tkn.type = ILLEGAL_NUMBER;
 				while (isdigit(curchar)) NextChar();
 			}
-			
+
 			UndoNextChar();
 			tkn.value.numeric_value = num;
 		}
@@ -204,20 +322,20 @@ Token ReadToken()
 	}
 	// TODO: String literals
 	/* else if (curchar == '\"'){
-		buffer[buf_idx++] = curchar;
-		do {
-			// If buffer could potentially overflow, request more space
-			if (buf_idx == buffer_sz - 2) {
-				buffer_sz <<= 2;
-				buffer = realloc(buffer, buffer_sz);
-			}
+	buffer[buf_idx++] = curchar;
+	do {
+	// If buffer could potentially overflow, request more space
+	if (buf_idx == buffer_sz - 2) {
+	buffer_sz <<= 2;
+	buffer = realloc(buffer, buffer_sz);
+	}
 
-			NextChar();
-			// Escape sequences
-			if (curchar == '\\'){
+	NextChar();
+	// Escape sequences
+	if (curchar == '\\'){
 
-			}
-		} while (curchar != '\"' && curchar != '\n' && curchar != EOF);
+	}
+	} while (curchar != '\"' && curchar != '\n' && curchar != EOF);
 	}
 	*/
 	// Register/Instruction/MacroInstruction/Identifier
@@ -232,36 +350,40 @@ Token ReadToken()
 		UndoNextChar();
 
 		// Now check for keywords (inefficient!)
-		tkn.type = INSTRUCTION;
-		if (strcmp(buffer, "ADD") == 0) {
-			tkn.value.numeric_value = 1;
-		}
-		else {
-			tkn.type = IDENTIFIER;
-		}
-		
+		if (!KeywordLookup(buffer, &tkn)) tkn.type = IDENTIFIER;
+
 		// Set string pointer to buffer
 		if (tkn.type == IDENTIFIER)	tkn.value.string_value = buffer;
 	}
+	// left square bracket
+	else if (curchar == '[') tkn.type = LEFT_SQ_BRKT;
+	// right square bracket
+	else if (curchar == ']') tkn.type == RIGHT_SQ_BRKT;
+
 	// Illegal
 	else {
 		tkn.type = ILLEGAL_SYMBOL;
 	}
 
 	// Free buffer depending on whether union contains char*
-	if (tkn.type == IDENTIFIER || tkn.type == TEXT_LITERAL) return tkn;
-	else {
+	if (!(tkn.type == IDENTIFIER || tkn.type == TEXT_LITERAL));
+	{
 		free(buffer);
-		return tkn;
 	}
 
+	
+	cur_tkn = tkn;
 }
 
+
 int main() {
+	// Init hash table
+	InitHashTable();
+
 	Token cur_token;
 
 	// Load file into source_file
-	source_file = fopen("test.txt", "r");
+	LoadFile("test.txt");
 
 	// Read tokens out of file
 	do {
