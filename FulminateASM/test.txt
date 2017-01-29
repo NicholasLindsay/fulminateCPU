@@ -1,31 +1,8 @@
-
-BEQ
-BNE
-BGTU
-BLEU
-BC
-BNC
-BGT
-BLTE
-BGE
-BLT
-BOV
-BRA
-GET(.B)
-SET(.B)
-ADD(.B)
-SUB(.B)
-ADC(.B)
-SWB(.B)
-AND(.B)
-CMP(.B)
-XOR(.B)
-OR(.B)
-ADD
-SUB
-GET(.B)
-SET(.B)
-AND
-CMP
-GETI
-OR
+.code
+	  LED EQU 0x0020
+	  XOR r0, r0; - B0 00
+	  XOR r1, r1; - B1 01
+loop: SET R1, [LED] - 49 20
+	  ADD R0, 1 - 80 1C 00 01
+	  ADC R1, 0 - 91 1C
+	  BRA LOOP - 3F F4
