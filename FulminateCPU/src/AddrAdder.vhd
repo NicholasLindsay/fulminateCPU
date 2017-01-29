@@ -40,7 +40,7 @@ entity AddrAdder is
                                         -- 3 = "9";
                                         -- 4 = "-1";
                                         -- 5 = "-2";
-                                        -- 6 = undef;
+                                        -- 6 = from instr offset;
                                         -- 7 = from execution side
            PCIn : in STD_LOGIC_VECTOR (31 downto 0); -- Data from PC
            RegIn : in STD_LOGIC_VECTOR (31 downto 0); -- Data from Address file

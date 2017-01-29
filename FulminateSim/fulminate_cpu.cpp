@@ -433,8 +433,9 @@ void FulminateCPU::BranchInstruction(Word opcode)
 		
 		// Add this to pc (branch address is relative to PC + 2)
 		// i.e. offset = dest - opcode_addr - 2
-		// remember offset in words, not bytes
-		pc += (offset << 1);
+		// TODO: offset in words, not bytes. At moment fine
+		//pc += (offset << 1);
+		pc += offset;
 	}
 	
 	return;

@@ -1,0 +1,904 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> Reading design: top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top.prj"
+
+---- Target Parameters
+Target Device                      : xc6slx9tqg144-2
+Output File Name                   : "top.ngc"
+
+---- Source Options
+Top Module Name                    : top
+
+---- General Options
+Optimization Goal                  : speed
+Optimization Effort                : 1
+Netlist Hierarchy                  : rebuilt
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux8to1.vhd" into library work
+Parsing entity <mux8to1>.
+Parsing architecture <Behavioral> of entity <mux8to1>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/regfile8x16.vhd" into library work
+Parsing entity <regfile8x16>.
+Parsing architecture <beh> of entity <regfile8x16>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/pc.vhd" into library work
+Parsing entity <regRE>.
+Parsing architecture <beh> of entity <regre>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/offsetMux.vhd" into library work
+Parsing entity <offsetMux>.
+Parsing architecture <Behavioral> of entity <offsetmux>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux4to1.vhd" into library work
+Parsing entity <mux4to1>.
+Parsing architecture <Behavioral> of entity <mux4to1>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux2-to-1.vhd" into library work
+Parsing entity <mux2to1>.
+Parsing architecture <Behavioral> of entity <mux2to1>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/flags_reg.vhd" into library work
+Parsing entity <flags_reg>.
+Parsing architecture <Behavioral> of entity <flags_reg>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/BranchCond.vhd" into library work
+Parsing entity <BranchCond>.
+Parsing architecture <Behavioral> of entity <branchcond>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/alu.vhd" into library work
+Parsing entity <alu>.
+Parsing architecture <Behavioral> of entity <alu>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/addr_reg_file.vhd" into library work
+Parsing entity <AddrRegFile>.
+Parsing architecture <beh> of entity <addrregfile>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/AddrAdder.vhd" into library work
+Parsing entity <AddrAdder>.
+Parsing architecture <beh> of entity <addradder>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/execution_unit.vhd" into library work
+Parsing entity <execution_unit>.
+Parsing architecture <structural> of entity <execution_unit>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/addr_unit.vhd" into library work
+Parsing entity <addr_unit>.
+Parsing architecture <Structural> of entity <addr_unit>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/fulminate.vhd" into library work
+Parsing entity <fulminate>.
+Parsing architecture <Behavioral> of entity <fulminate>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.srcs/sources_1/new/LEDcontroller.vhd" into library work
+Parsing entity <LEDcontroller>.
+Parsing architecture <Behavioral> of entity <ledcontroller>.
+Parsing VHDL file "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.srcs/sources_1/new/top.vhd" into library work
+Parsing entity <top>.
+Parsing architecture <Behavioral> of entity <top>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <top> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <fulminate> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <execution_unit> (architecture <structural>) from library <work>.
+
+Elaborating entity <alu> (architecture <Behavioral>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/alu.vhd" Line 71. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/alu.vhd" Line 82. Case statement is complete. others clause is never selected
+
+Elaborating entity <mux4to1> (architecture <Behavioral>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux4to1.vhd" Line 53. Case statement is complete. others clause is never selected
+
+Elaborating entity <mux2to1> (architecture <Behavioral>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux2-to-1.vhd" Line 49. Case statement is complete. others clause is never selected
+
+Elaborating entity <regfile8x16> (architecture <beh>) from library <work>.
+
+Elaborating entity <regRE> (architecture <beh>) with generics from library <work>.
+
+Elaborating entity <flags_reg> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <offsetMux> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <mux8to1> (architecture <Behavioral>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux8to1.vhd" Line 61. Case statement is complete. others clause is never selected
+
+Elaborating entity <BranchCond> (architecture <Behavioral>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/BranchCond.vhd" Line 67. Case statement is complete. others clause is never selected
+
+Elaborating entity <addr_unit> (architecture <Structural>) from library <work>.
+
+Elaborating entity <AddrAdder> (architecture <beh>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/AddrAdder.vhd" Line 63. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/AddrAdder.vhd" Line 78. Case statement is complete. others clause is never selected
+
+Elaborating entity <regRE> (architecture <beh>) with generics from library <work>.
+
+Elaborating entity <AddrRegFile> (architecture <beh>) from library <work>.
+INFO:HDLCompiler:679 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/fulminate.vhd" Line 426. Case statement is complete. others clause is never selected
+
+Elaborating entity <LEDcontroller> (architecture <Behavioral>) from library <work>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <top>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.srcs/sources_1/new/top.vhd".
+INFO:Xst:3210 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.srcs/sources_1/new/top.vhd" line 81: Output port <wt> of the instance <ledcontrol> is unconnected or connected to loadless signal.
+    Summary:
+	inferred   8 Multiplexer(s).
+Unit <top> synthesized.
+
+Synthesizing Unit <fulminate>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/fulminate.vhd".
+INFO:Xst:3210 - "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/fulminate.vhd" line 141: Output port <flags_out> of the instance <ExecUnit> is unconnected or connected to loadless signal.
+    Found 3-bit register for signal <current_state>.
+    Found 16-bit register for signal <IR>.
+    Found 4x1-bit Read Only RAM for signal <bus_rw_int>
+    Found 8x3-bit Read Only RAM for signal <_n0221>
+    Summary:
+	inferred   2 RAM(s).
+	inferred  19 D-type flip-flop(s).
+	inferred  54 Multiplexer(s).
+Unit <fulminate> synthesized.
+
+Synthesizing Unit <execution_unit>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/execution_unit.vhd".
+WARNING:Xst:647 - Input <IRin<15:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <execution_unit> synthesized.
+
+Synthesizing Unit <alu>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/alu.vhd".
+    Found 17-bit adder for signal <n0044> created at line 95.
+    Found 17-bit adder for signal <addres> created at line 95.
+    Found 1-bit 4-to-1 multiplexer for signal <addc> created at line 77.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  10 Multiplexer(s).
+Unit <alu> synthesized.
+
+Synthesizing Unit <mux4to1>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux4to1.vhd".
+    Found 16-bit 4-to-1 multiplexer for signal <data_out> created at line 48.
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <mux4to1> synthesized.
+
+Synthesizing Unit <mux2to1>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux2-to-1.vhd".
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <mux2to1> synthesized.
+
+Synthesizing Unit <regfile8x16>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/regfile8x16.vhd".
+    Found 16-bit register for signal <RegFile<1>>.
+    Found 16-bit register for signal <RegFile<2>>.
+    Found 16-bit register for signal <RegFile<3>>.
+    Found 16-bit register for signal <RegFile<4>>.
+    Found 16-bit register for signal <RegFile<5>>.
+    Found 16-bit register for signal <RegFile<6>>.
+    Found 16-bit register for signal <RegFile<7>>.
+    Found 16-bit register for signal <RegFile<0>>.
+    Found 16-bit 8-to-1 multiplexer for signal <out1> created at line 60.
+    Found 16-bit 8-to-1 multiplexer for signal <out2> created at line 61.
+    Summary:
+	inferred 128 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <regfile8x16> synthesized.
+
+Synthesizing Unit <regRE_1>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/pc.vhd".
+        width = 16
+        reset_val = "0000000000000000"
+    Found 16-bit register for signal <ValueOut>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <regRE_1> synthesized.
+
+Synthesizing Unit <flags_reg>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/flags_reg.vhd".
+    Found 16-bit register for signal <reg_int>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <flags_reg> synthesized.
+
+Synthesizing Unit <offsetMux>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/offsetMux.vhd".
+    Summary:
+	no macro.
+Unit <offsetMux> synthesized.
+
+Synthesizing Unit <mux8to1>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/mux8to1.vhd".
+    Found 32-bit 7-to-1 multiplexer for signal <data_out> created at line 52.
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <mux8to1> synthesized.
+
+Synthesizing Unit <BranchCond>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/BranchCond.vhd".
+WARNING:Xst:647 - Input <flags_reg_in<15:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit 15-to-1 multiplexer for signal <cond_int> created at line 50.
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <BranchCond> synthesized.
+
+Synthesizing Unit <addr_unit>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/addr_unit.vhd".
+    Summary:
+	no macro.
+Unit <addr_unit> synthesized.
+
+Synthesizing Unit <AddrAdder>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/AddrAdder.vhd".
+    Found 32-bit adder for signal <data1[31]_data2[31]_add_4_OUT> created at line 87.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Multiplexer(s).
+Unit <AddrAdder> synthesized.
+
+Synthesizing Unit <regRE_2>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/pc.vhd".
+        width = 32
+        reset_val = "00000000000000000000000000000000"
+    Found 32-bit register for signal <ValueOut>.
+    Summary:
+	inferred  32 D-type flip-flop(s).
+Unit <regRE_2> synthesized.
+
+Synthesizing Unit <AddrRegFile>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/src/addr_reg_file.vhd".
+    Found 32-bit register for signal <RegFile<1>>.
+    Found 32-bit register for signal <RegFile<2>>.
+    Found 32-bit register for signal <RegFile<3>>.
+    Found 32-bit register for signal <RegFile<0>>.
+    Found 32-bit 4-to-1 multiplexer for signal <OutData> created at line 65.
+    Summary:
+	inferred 128 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <AddrRegFile> synthesized.
+
+Synthesizing Unit <LEDcontroller>.
+    Related source file is "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.srcs/sources_1/new/LEDcontroller.vhd".
+WARNING:Xst:647 - Input <data_mtos<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <byte_sel<0:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <wt> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+    Found 8-bit register for signal <LEDS_int>.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+Unit <LEDcontroller> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 2
+ 4x1-bit single-port Read Only RAM                     : 1
+ 8x3-bit single-port Read Only RAM                     : 1
+# Adders/Subtractors                                   : 3
+ 17-bit adder                                          : 2
+ 32-bit adder                                          : 1
+# Registers                                            : 20
+ 16-bit register                                       : 12
+ 3-bit register                                        : 1
+ 32-bit register                                       : 6
+ 8-bit register                                        : 1
+# Multiplexers                                         : 82
+ 1-bit 15-to-1 multiplexer                             : 1
+ 1-bit 2-to-1 multiplexer                              : 42
+ 1-bit 4-to-1 multiplexer                              : 1
+ 16-bit 2-to-1 multiplexer                             : 19
+ 16-bit 4-to-1 multiplexer                             : 1
+ 16-bit 8-to-1 multiplexer                             : 2
+ 3-bit 2-to-1 multiplexer                              : 9
+ 32-bit 2-to-1 multiplexer                             : 2
+ 32-bit 4-to-1 multiplexer                             : 1
+ 32-bit 7-to-1 multiplexer                             : 1
+ 4-bit 2-to-1 multiplexer                              : 3
+# Xors                                                 : 1
+ 16-bit xor2                                           : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <fulminate>.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_bus_rw_int> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 4-word x 1-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <current_state<1:0>> |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <bus_rw_int>    |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram__n0221> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 3-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <current_state> |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <fulminate> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 2
+ 4x1-bit single-port distributed Read Only RAM         : 1
+ 8x3-bit single-port distributed Read Only RAM         : 1
+# Adders/Subtractors                                   : 2
+ 17-bit adder carry in                                 : 1
+ 32-bit adder                                          : 1
+# Registers                                            : 395
+ Flip-Flops                                            : 395
+# Multiplexers                                         : 143
+ 1-bit 15-to-1 multiplexer                             : 1
+ 1-bit 2-to-1 multiplexer                              : 42
+ 1-bit 4-to-1 multiplexer                              : 33
+ 1-bit 8-to-1 multiplexer                              : 32
+ 16-bit 2-to-1 multiplexer                             : 19
+ 16-bit 4-to-1 multiplexer                             : 1
+ 3-bit 2-to-1 multiplexer                              : 9
+ 32-bit 2-to-1 multiplexer                             : 2
+ 32-bit 7-to-1 multiplexer                             : 1
+ 4-bit 2-to-1 multiplexer                              : 3
+# Xors                                                 : 1
+ 16-bit xor2                                           : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <reg_int_4> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_5> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_6> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_7> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_8> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_9> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_10> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_11> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_12> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_13> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_14> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_int_15> (without init value) has a constant value of 0 in block <flags_reg>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <RegFile_2_31> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_30> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_29> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_28> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_27> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_26> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_25> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_24> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_23> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_22> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_21> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_20> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_19> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_18> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_17> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_16> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_15> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_14> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_13> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_12> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_11> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_10> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_9> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_8> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_7> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_6> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_5> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_4> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_3> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_2> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_1> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_2_0> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_31> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_30> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_29> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_28> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_27> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_26> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_25> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_24> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_23> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_22> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_21> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_20> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_19> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_18> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_17> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_16> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_15> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_14> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_13> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_12> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_11> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_10> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_9> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_8> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_7> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_6> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_5> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_4> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_3> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_2> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_1> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_0_0> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_31> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_30> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_29> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_28> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_27> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_26> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_25> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_24> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_23> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_22> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_21> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_20> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_19> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_18> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_17> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_16> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_15> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_14> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_13> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_12> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_11> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_10> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_9> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_8> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_7> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_6> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_5> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_4> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_3> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_2> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_1> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_3_0> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_31> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_30> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_29> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_28> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_27> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_26> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_25> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_24> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_23> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_22> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_21> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_20> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_19> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_18> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_17> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_16> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_15> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_14> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_13> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_12> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_11> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_10> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_9> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_8> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_7> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_6> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_5> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_4> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_3> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_2> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_1> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <RegFile_1_0> (without init value) has a constant value of 0 in block <AddrRegFile>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <regRE_1> ...
+
+Optimizing unit <top> ...
+
+Optimizing unit <fulminate> ...
+
+Optimizing unit <execution_unit> ...
+
+Optimizing unit <regfile8x16> ...
+
+Optimizing unit <alu> ...
+
+Optimizing unit <AddrAdder> ...
+
+Optimizing unit <LEDcontroller> ...
+WARNING:Xst:1710 - FF/Latch <cpu/ExecUnit/TempReg/ValueOut_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/TempReg/ValueOut_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_3_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_4_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_2_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_7_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/AddrUnit/MAR/ValueOut_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/AddrUnit/ProgramCounter/ValueOut_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_10> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_11> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_12> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_13> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_14> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_5_15> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_0> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_1> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_2> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_3> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_4> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_5> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_6> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_7> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_8> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <cpu/ExecUnit/GPRFile/RegFile_6_9> (without init value) has a constant value of 0 in block <top>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <cpu/IR_10> in Unit <top> is equivalent to the following FF/Latch, which will be removed : <cpu/IR_9> 
+
+Mapping all equations...
+WARNING:Xst:2677 - Node <cpu/ExecUnit/FlagsReg/reg_int_0> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <cpu/ExecUnit/FlagsReg/reg_int_1> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <cpu/ExecUnit/FlagsReg/reg_int_3> of sequential type is unconnected in block <top>.
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block top, actual ratio is 6.
+FlipFlop cpu/IR_14 has been replicated 4 time(s)
+FlipFlop cpu/IR_15 has been replicated 4 time(s)
+FlipFlop cpu/current_state_0 has been replicated 4 time(s)
+FlipFlop cpu/current_state_1 has been replicated 4 time(s)
+FlipFlop cpu/current_state_2 has been replicated 4 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 157
+ Flip-Flops                                            : 157
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : top.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 424
+#      GND                         : 4
+#      INV                         : 1
+#      LUT2                        : 6
+#      LUT3                        : 40
+#      LUT4                        : 50
+#      LUT5                        : 59
+#      LUT6                        : 146
+#      MUXCY                       : 46
+#      MUXF7                       : 25
+#      XORCY                       : 47
+# FlipFlops/Latches                : 157
+#      FD                          : 5
+#      FDE                         : 23
+#      FDR                         : 10
+#      FDRE                        : 103
+#      FDSE                        : 16
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 9
+#      IBUF                        : 1
+#      OBUF                        : 8
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9tqg144-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             157  out of  11440     1%  
+ Number of Slice LUTs:                  302  out of   5720     5%  
+    Number used as Logic:               302  out of   5720     5%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    448
+   Number with an unused Flip Flop:     291  out of    448    64%  
+   Number with an unused LUT:           146  out of    448    32%  
+   Number of fully used LUT-FF pairs:    11  out of    448     2%  
+   Number of unique control sets:        10
+
+IO Utilization: 
+ Number of IOs:                          10
+ Number of bonded IOBs:                  10  out of    102     9%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 157   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 6.557ns (Maximum Frequency: 152.509MHz)
+   Minimum input arrival time before clock: 4.835ns
+   Maximum output required time after clock: 4.277ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 6.557ns (frequency: 152.509MHz)
+  Total number of paths / destination ports: 39085 / 299
+-------------------------------------------------------------------------
+Delay:               6.557ns (Levels of Logic = 10)
+  Source:            cpu/IR_0 (FF)
+  Destination:       cpu/ExecUnit/MDR/ValueOut_2 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: cpu/IR_0 to cpu/ExecUnit/MDR/ValueOut_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q             18   0.525   1.343  IR_0 (IR_0)
+     begin scope: 'cpu/ExecUnit:IRin<0>'
+     begin scope: 'cpu/ExecUnit/GPRFile:out2_sel<0>'
+     LUT4:I2->O            2   0.250   0.726  mux24_41 (mux24_4)
+     end scope: 'cpu/ExecUnit/GPRFile:mux24_4'
+     begin scope: 'cpu/ExecUnit/ALUsrc2sel:mux24_4'
+     LUT6:I5->O            4   0.254   1.259  Mmux_data_out91 (data_out<2>)
+     end scope: 'cpu/ExecUnit/ALUsrc2sel:data_out<2>'
+     begin scope: 'cpu/ExecUnit/ALUunit:srcB<2>'
+     LUT6:I0->O            1   0.254   0.682  Mmux_result_int18_SW4_G (N97)
+     LUT3:I2->O            1   0.254   0.682  Mmux_result_int18_SW41 (N82)
+     end scope: 'cpu/ExecUnit/ALUunit:N82'
+     begin scope: 'cpu/ExecUnit/MDRsrcsel:N82'
+     LUT6:I5->O            1   0.254   0.000  Mmux_data_out91 (data_out<2>)
+     end scope: 'cpu/ExecUnit/MDRsrcsel:data_out<2>'
+     begin scope: 'cpu/ExecUnit/MDR:ValueIn<2>'
+     FDRE:D                    0.074          ValueOut_2
+    ----------------------------------------
+    Total                      6.557ns (1.865ns logic, 4.692ns route)
+                                       (28.4% logic, 71.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 87 / 87
+-------------------------------------------------------------------------
+Offset:              4.835ns (Levels of Logic = 3)
+  Source:            JOY_SELECT (PAD)
+  Destination:       ledcontrol/LEDS_int_7 (FF)
+  Destination Clock: CLK rising
+
+  Data Path: JOY_SELECT to ledcontrol/LEDS_int_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   1.328   0.725  JOY_SELECT_IBUF (JOY_SELECT_IBUF)
+     INV:I->O             82   0.255   2.068  rst1_INV_0 (rst)
+     begin scope: 'ledcontrol:rst'
+     FDRE:R                    0.459          LEDS_int_0
+    ----------------------------------------
+    Total                      4.835ns (2.042ns logic, 2.793ns route)
+                                       (42.2% logic, 57.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Offset:              4.277ns (Levels of Logic = 2)
+  Source:            ledcontrol/LEDS_int_1 (FF)
+  Destination:       LED<1> (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: ledcontrol/LEDS_int_1 to LED<1>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             5   0.525   0.840  LEDS_int_1 (LEDS_int_1)
+     end scope: 'ledcontrol:leds<1>'
+     OBUF:I->O                 2.912          LED_1_OBUF (LED<1>)
+    ----------------------------------------
+    Total                      4.277ns (3.437ns logic, 0.840ns route)
+                                       (80.4% logic, 19.6% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |    6.557|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.83 secs
+ 
+--> 
+
+Total memory usage is 299016 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  262 (   0 filtered)
+Number of infos    :    5 (   0 filtered)
+

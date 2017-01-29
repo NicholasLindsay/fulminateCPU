@@ -1,0 +1,1 @@
+-intstyle "pa" -incremental -L "work" -L "simprims_ver" -L "secureip" -o "top_sim.exe" --prj "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.sim/sim_1/impl/timing/top_sim.prj" -top "work.top_sim" -top "work.glbl" 

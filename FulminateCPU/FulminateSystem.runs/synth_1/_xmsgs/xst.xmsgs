@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="error" file="HDLCompiler" num="580" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 41: Mismatch on label ; expected <arg fmt="%s" index="1">mux4to1</arg>
+</msg>
+
+<msg type="error" file="HDLCompiler" num="854" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 34: Unit &lt;<arg fmt="%s" index="1">mux4to1</arg>&gt; ignored due to previous errors.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="374" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 43: Entity &lt;<arg fmt="%s" index="1">mux4to1</arg>&gt; is not yet compiled.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 49: &lt;<arg fmt="%s" index="1">data_out</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 50: &lt;<arg fmt="%s" index="1">data_out</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 51: &lt;<arg fmt="%s" index="1">data_out</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 52: &lt;<arg fmt="%s" index="1">data_out</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 53: &lt;<arg fmt="%s" index="1">data_out</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 48: &lt;<arg fmt="%s" index="1">sel</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.srcs/sources_1/new/mux4to1.vhd" Line 47: &lt;<arg fmt="%s" index="1">data0</arg>&gt; is not declared.
+</msg>
+
+</messages>
+

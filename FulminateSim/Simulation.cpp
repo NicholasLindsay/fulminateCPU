@@ -12,13 +12,13 @@ Simulation::Simulation()
 
 	// Load following values to run test program
 	std::stringstream hex;
-	hex << "d7 8f df 41 f2 03 E9 00 28 02 C9 01 3F FC 3F FF";
+	hex << "b0 00 b1 01 49 20 80 1c 00 01 91 1c 00 00 3f f5";
 
 	// Constants
-	mRAM->PokeWord(32, 0x0123);
-	mRAM->PokeWord(34, 0x4567);
-	mRAM->PokeWord(36, 0x89ab);
-	mRAM->PokeWord(38, 0xcdef);
+	//mRAM->PokeWord(32, 0x0123);
+	//mRAM->PokeWord(34, 0x4567);
+	//mRAM->PokeWord(36, 0x89ab);
+	//mRAM->PokeWord(38, 0xcdef);
 
 	int i = mRAM->PokeByteHexStream(0, &hex);
 }
@@ -57,6 +57,7 @@ Simulation::~Simulation()
 		pokeb	- Pokes a string of bytes (in hex) into memory. Parameter:
 			addr - Lowest address to insert byte
 			bytes - hex data to insert into memory
+		run (instruction count) - Runs for instruction count instructions
 			
 */
 int Simulation::RunCommands(std::istream* in, std::ostream* out, bool prompt)
@@ -112,6 +113,20 @@ int Simulation::RunCommands(std::istream* in, std::ostream* out, bool prompt)
 		// PokeByte(s)
 		else if (command == "pokeb") {
 			error |= PokeBytes(&ss, out);
+		}
+		// Run (instructions) - run for a number of full instructions
+		else if (command == "run"){
+			// Check for number of instructions
+			int time;
+			if (ss >> time) {
+				for (int i = 0; i < time; i++) {
+					mCpu.ITick();
+				}
+			}
+			else {
+				// default to one instruction for now
+				mCpu.ITick();
+			}
 		}
 		// Exit
 		else if (command == "exit") {

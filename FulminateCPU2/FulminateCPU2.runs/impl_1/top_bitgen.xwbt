@@ -1,0 +1,8 @@
+INTSTYLE=pa
+INFILE=C:\Users\Nicholas\Documents\Project Fulminate\FulminateSim\FulminateCPU2\FulminateCPU2.runs\impl_1\top_routed.ncd
+OUTFILE=C:\Users\Nicholas\Documents\Project Fulminate\FulminateSim\FulminateCPU2\FulminateCPU2.runs\impl_1\top.bit
+FAMILY=Spartan6
+PART=xc6slx9-2tqg144
+WORKINGDIR=C:\Users\Nicholas\Documents\Project Fulminate\FulminateSim\FulminateCPU2\FulminateCPU2.runs\impl_1
+LICENSE=WebPack
+USER_INFO=210945359_0_0_855
