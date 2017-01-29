@@ -2,6 +2,12 @@
 <DARoots Version="1" Minor="26">
   <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/src/regfile8x16.vhd">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/src/flags_reg.vhd">
       <FileInfo>
         <Attr Name="UsedInSynthesis" Val="1"/>
@@ -14,7 +20,13 @@
         <Attr Name="UsedInSimulation" Val="1"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/regfile8x16.vhd">
+    <File Path="$PSRCDIR/sources_1/new/offsetMux.vhd">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/mux4to1.vhd">
       <FileInfo>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -65,6 +77,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/mux8to1.vhd">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/BranchCond.vhd">
       <FileInfo>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>

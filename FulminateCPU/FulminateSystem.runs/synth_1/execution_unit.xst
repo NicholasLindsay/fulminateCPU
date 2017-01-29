@@ -1,0 +1,9 @@
+set -loop_iteration_limit 1000
+run
+-ifn execution_unit.prj
+-top execution_unit
+-p xc6slx9tqg144-2
+-ofn execution_unit.ngc
+-opt_mode speed
+-opt_level 1
+-netlist_hierarchy rebuilt

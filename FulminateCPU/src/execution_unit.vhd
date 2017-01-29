@@ -48,7 +48,10 @@ entity execution_unit is
            flags_ld_alu : in STD_LOGIC;
            flags_out : out STD_LOGIC_VECTOR (15 downto 0);
            temp_ld : in STD_LOGIC;
-           temp_rst : in STD_LOGIC);
+           temp_rst : in STD_LOGIC;
+           IR4bitin: in STD_LOGIC_VECTOR (3 downto 0);
+           addr_offset_sel : in STD_LOGIC_VECTOR (2 downto 0)
+           addr_offset_out : out STD_LOGIC_VECTOR (31 downto 0));
 end execution_unit;
 
 architecture structural of execution_unit is
@@ -95,6 +98,15 @@ component mux2to1 is
            data_out : out STD_LOGIC_VECTOR );
 end component;
 
+component mux4to1 is
+    Port ( data0 : in STD_LOGIC_VECTOR;
+           data1 : in STD_LOGIC_VECTOR;
+           data2 : in STD_LOGIC_VECTOR;
+           data3 : in STD_LOGIC_VECTOR;
+           sel : in STD_LOGIC_VECTOR (2 downto 0);
+           data_out : out STD_LOGIC_VECTOR);
+end component;
+
 component mux8to1 is
     Port ( data0 : in STD_LOGIC_VECTOR;
            data1 : in STD_LOGIC_VECTOR;
@@ -116,6 +128,15 @@ component regRE is
           ValueOut       : out std_logic_vector(width - 1 downto 0)); -- data read
 end component;
 
+component offsetMux is
+    Port ( MDRin : in STD_LOGIC_VECTOR (15 downto 0);
+           TempIn : in STD_LOGIC_VECTOR (15 downto 0);
+           RegIn : in STD_LOGIC_VECTOR (15 downto 0);
+           IR4bitin: in STD_LOGIC_VECTOR (3 downto 0);
+           Sel : in STD_LOGIC_VECTOR(2 downto 0);
+           offsetOut : out STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
 -- start of signal declerations
 signal reg_wr_src : std_logic_vector(15 downto 0);
 signal reg_out1, reg_out2 : std_logic_vector(15 downto 0);
@@ -132,7 +153,7 @@ begin
 
 ALU: alu port map(
         srcA => reg_out1,
-        srcB => reg_out2,
+        srcB => alu_src2,
         funct => alu_funct,
         result => alu_res,
         carry_in => flags_carry,
@@ -140,6 +161,14 @@ ALU: alu port map(
         zero_out => alu_zero,
         sign_out => alu_sign,
             overflow_out => alu_ov);
+
+ALUsrc2sel: mux4to1 port map (
+            data0 => reg_out2,
+            data1 => flags_val_int,
+            data2 => temp_val,
+            data3 => mdr_val,
+            sel => alu_src2_sel,
+            data_out => alu_src2);
 
 GPRsrcsel: mux2to1 port map (
             data0 => alu_res,
@@ -197,5 +226,14 @@ FlagsReg: flags_reg port map (
           ov_in => alu_ov,
           ld_from_bus => flags_ld_bus,
           ld_from_alu => flags_ld_alu);
+
+AddrOffsetMux: offsetMux port map (
+             MDRin <= MDR_val;
+             TempIn <= temp_val;
+             RegIn <= reg_out2;
+             IR4bitin <= IR4bitin;
+             Sel <= addr_offset_sel;
+             offsetOut <= addr_offset_out);
+
 
 end structural;

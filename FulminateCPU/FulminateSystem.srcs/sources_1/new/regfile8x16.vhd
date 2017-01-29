@@ -28,7 +28,7 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity regfile8x16 is
+entity regfile8by16 is
     Port ( clk : in STD_LOGIC; -- jellybean
            rst : in STD_LOGIC;
            data_in : in STD_LOGIC_VECTOR (15 downto 0); -- data to write
@@ -38,9 +38,9 @@ entity regfile8x16 is
            out1_sel : in STD_LOGIC_VECTOR (2 downto 0);
            out2 : out STD_LOGIC_VECTOR (15 downto 0); -- output of r selected by out2sel
            out2_sel : in STD_LOGIC_VECTOR (2 downto 0));
-end regfile8x16;
+end regfile8by16;
 
-architecture beh of regfile8x16 is
+architecture beh of regfile8by16 is
     type REGFILE_T is ARRAY(0 to 7) of std_logic_vector(16 downto 0);
     signal RegFile : REGFILE_T;
 begin

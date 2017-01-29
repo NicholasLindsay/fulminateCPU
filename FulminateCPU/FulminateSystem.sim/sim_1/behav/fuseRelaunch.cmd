@@ -1,1 +1,1 @@
--intstyle "pa" -incremental -L "work" -L "secureip" -o "alu_tb.exe" --prj "C:/Users/Nicholas/Desktop/Fulminate CPU/v3/fulminateCPU/FulminateCPU/FulminateSystem.sim/sim_1/behav/alu_tb.prj" -top "work.alu_tb" 
+-intstyle "pa" -incremental -L "work" -L "secureip" -o "alu_tb.exe" --prj "C:/Users/Nicholas/Documents/Project Fulminate/FulminateSim/FulminateCPU/FulminateSystem.sim/sim_1/behav/alu_tb.prj" -top "work.alu_tb" 
