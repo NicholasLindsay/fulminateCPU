@@ -5,7 +5,7 @@ C:\Xilinx\14.7\ISE_DS\ISE\.
    "top" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
 Opened constraints file top.pcf.
 
-Sun Jan 29 01:03:46 2017
+Sun Jan 29 23:16:46 2017
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\bitgen.exe -w -intstyle pa top_routed.ncd top.bit top.pcf 
 

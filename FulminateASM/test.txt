@@ -1,31 +1,7 @@
+		XOR g0,g0 ; clear g0 and g1
+		XOR g1,g1
+LOOP:	SET r1, [LED] ; output g1 to the LEDs
+		ADD r0, 1 ; add 1 to r0
+		ADC r1, 0; add carry of above to r1
+		BRA LOOP;
 
-BEQ
-BNE
-BGTU
-BLEU
-BC
-BNC
-BGT
-BLTE
-BGE
-BLT
-BOV
-BRA
-GET(.B)
-SET(.B)
-ADD(.B)
-SUB(.B)
-ADC(.B)
-SWB(.B)
-AND(.B)
-CMP(.B)
-XOR(.B)
-OR(.B)
-ADD
-SUB
-GET(.B)
-SET(.B)
-AND
-CMP
-GETI
-OR
