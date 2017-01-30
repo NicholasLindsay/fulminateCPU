@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 		XOR g0,g0 ; clear g0 and g1
 		XOR g1,g1
 LOOP:	SET r1, [LED] ; output g1 to the LEDs
@@ -5,3 +6,13 @@ LOOP:	SET r1, [LED] ; output g1 to the LEDs
 		ADC r1, 0; add carry of above to r1
 		BRA LOOP;
 
+=======
+.code
+	  LED EQU 0x0020
+	  XOR r0, r0; - B0 00
+	  XOR r1, r1; - B1 01
+loop: SET R1, [LED] - 49 20
+	  ADD R0, 1 - 80 1C 00 01
+	  ADC R1, 0 - 91 1C
+	  BRA LOOP - 3F F4
+>>>>>>> origin/first_sim

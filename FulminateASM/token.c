@@ -79,7 +79,7 @@ void UndoNextChar() {
 	Keywords are stored in a hash-table, which is initialised at program startup.
 */
 struct {
-	char* key;
+	const char* key;
 	Token keyword_tkn;
 } KeywordHashTable[256];
 
@@ -358,7 +358,7 @@ void NextToken()
 	// left square bracket
 	else if (curchar == '[') tkn.type = LEFT_SQ_BRKT;
 	// right square bracket
-	else if (curchar == ']') tkn.type == RIGHT_SQ_BRKT;
+	else if (curchar == ']') tkn.type = RIGHT_SQ_BRKT;
 
 	// Illegal
 	else {
@@ -366,7 +366,7 @@ void NextToken()
 	}
 
 	// Free buffer depending on whether union contains char*
-	if (!(tkn.type == IDENTIFIER || tkn.type == TEXT_LITERAL));
+	if ((tkn.type != IDENTIFIER) && (tkn.type != TEXT_LITERAL))
 	{
 		free(buffer);
 	}
@@ -380,23 +380,28 @@ int main() {
 	// Init hash table
 	InitHashTable();
 
-	Token cur_token;
-
 	// Load file into source_file
 	LoadFile("test.txt");
 
 	// Read tokens out of file
 	do {
 		NextToken();
+<<<<<<< HEAD
 		printf("Token Type: %d. ", cur_token.type);
 		if (cur_token.type == IDENTIFIER) {
 			printf("Token Value: %s\n", cur_token.value.string_value);
 			free(cur_token.value.string_value);
+=======
+		printf("Token Type: %d. ", cur_tkn.type);
+		if (cur_tkn.type == IDENTIFIER) {
+			printf("Token Value: %s\n", cur_tkn.value.string_value);
+			free(cur_tkn.value.string_value);
+>>>>>>> origin/first_sim
 		}
 		else {
-			printf("Token Value: %d\n", cur_token.value.numeric_value);
+			printf("Token Value: %d\n", cur_tkn.value.numeric_value);
 		}
-	} while (cur_token.type != END_OF_FILE);
+	} while (cur_tkn.type != END_OF_FILE);
 
 	getchar();
 }

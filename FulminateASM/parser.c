@@ -1,4 +1,5 @@
 #include "token.h"
+#include <stdlib.h>
 
 // Pointer to the memory location at the start of the binary
 uint16_t* binary;
@@ -21,7 +22,7 @@ uint32_t binary_size;
 typedef struct
 {
 	uint32_t mem_addr; 
-	char* name;
+	const char* name;
 	uint32_t offset;
 
 	/*
@@ -49,14 +50,15 @@ typedef struct
 	} reloc_type;
 } RelocationEntry;
 
-typedef struct
+
+struct _RelocationEntryBlock
 {
 	RelocationEntry entries[255];
-	RelocationEntryBlock* next_block;
+	struct RelocationEntryBlock* next_block;
 	int cur_idx;
-} RelocationEntryBlock;
+} *first_block, *current_block;
 
-RelocationEntryBlock *first_block, *current_block;
+typedef struct _RelocationEntryBlock RelocationEntryBlock;
 
 /*
 	Adds an entry to the Relocation table. Returns 1 if successful
@@ -154,9 +156,9 @@ int FirstPass() {
 	}
 }
 
-int main() {
-	if (LoadFile("test.txt")) {
-
-	}
-
-}
+//int main() {
+//	if (LoadFile("test.txt")) {
+//
+//	}
+//
+//}
