@@ -7,8 +7,8 @@ Command Line: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe
 Executing edif2ngd -quiet -aul "top.edf" "_ngo\top.ngo"
 Release 14.7 - edif2ngd P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
-Reading NGO file "C:/Users/Nicholas/Documents/Project
-Fulminate/FulminateSim/FulminateCPU2/FulminateCPU2.runs/impl_1/_ngo/top.ngo" ...
+Reading NGO file "C:/Users/Nicholas/Desktop/Fulminate
+CPU/v3/fulminateCPU/FulminateCPU2/FulminateCPU2.runs/impl_1/_ngo/top.ngo" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -34,10 +34,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 184852 kilobytes
+Total memory usage is 162912 kilobytes
 
 Writing NGD file "top.ngd" ...
-Total REAL time to NGDBUILD completion:  10 sec
-Total CPU time to NGDBUILD completion:   5 sec
+Total REAL time to NGDBUILD completion:  27 sec
+Total CPU time to NGDBUILD completion:   12 sec
 
 Writing NGDBUILD log file "top.bld"...

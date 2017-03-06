@@ -349,7 +349,7 @@ void NextToken()
 		// The curchar doesn't belong to this token, so return it to the stream
 		UndoNextChar();
 
-		// Now check for keywords (inefficient!)
+		// Now check for keywords
 		if (!KeywordLookup(buffer, &tkn)) tkn.type = IDENTIFIER;
 
 		// Set string pointer to buffer
@@ -386,10 +386,17 @@ int main() {
 	// Read tokens out of file
 	do {
 		NextToken();
+<<<<<<< HEAD
+		printf("Token Type: %d. ", cur_token.type);
+		if (cur_token.type == IDENTIFIER) {
+			printf("Token Value: %s\n", cur_token.value.string_value);
+			free(cur_token.value.string_value);
+=======
 		printf("Token Type: %d. ", cur_tkn.type);
 		if (cur_tkn.type == IDENTIFIER) {
 			printf("Token Value: %s\n", cur_tkn.value.string_value);
 			free(cur_tkn.value.string_value);
+>>>>>>> origin/first_sim
 		}
 		else {
 			printf("Token Value: %d\n", cur_tkn.value.numeric_value);
