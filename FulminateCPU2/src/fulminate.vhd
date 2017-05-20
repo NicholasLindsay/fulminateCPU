@@ -350,6 +350,12 @@ AddrUnit: addr_unit port map (
                     addr_bypass_en <= '0';
                     
                     next_state <= DECODE; -- this is correct
+                elsif IR(6 downto 2) = "00010" then -- [areg--]. mar <- areg.
+                    ld_mar <= '1';
+                    areg_rd_sel <= IR(1 downto 0);
+                    addr_mux1sel <= '1';
+                    addr_mux2sel <= "000";
+                    
                 elsif IR(6 downto 0) = "0011100" then -- imm16. mdr <- mem. pc & mar = pc + 2
                     mdr_src_sel <= '1';
                     ld_mdr <= '1';
